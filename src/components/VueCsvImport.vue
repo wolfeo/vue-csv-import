@@ -11,12 +11,27 @@
                     </slot>
                 </div>
                 <div class="form-group csv-import-file">
-                    <input ref="csv" type="file" @change.prevent="validFileMimeType" :class="inputClass" name="csv">
-                    <slot name="error" v-if="showErrorMessage">
-                        <div class="invalid-feedback d-block">
-                            File type is invalid
-                        </div>
-                    </slot>
+
+                  <label class="file-label">
+                    <input ref="csv" class="file-input" type="file" @change="previewFiles" @change.prevent="validFileMimeType" >
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+                    <span class="file-name">
+                      {{ this.filename }}
+                    </span>
+                  </label>
+
+                  <slot name="error" v-if="showErrorMessage">
+                      <div class="invalid-feedback d-block">
+                          File type is invalid
+                      </div>
+                  </slot>
                 </div>
                 <div class="form-group">
                     <slot name="next" :load="load">
